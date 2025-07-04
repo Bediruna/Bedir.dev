@@ -40,7 +40,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link"
-                    href="https://www.linkedin.com/in/bedir-aygun"
+                    href="https://www.linkedin.com/in/BedirAygun"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn profile"

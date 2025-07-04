@@ -17,7 +17,7 @@
         download="Bedir Aygun Resume.pdf"><DownloadIcon height="1" /></a
     >
     <h1>BEDIR AYGUN</h1>
-    <h2>SOFTWARE ENGINEER</h2>
+    <h2>Professional Problem Solver</h2>
 
     <div>
         <p>
