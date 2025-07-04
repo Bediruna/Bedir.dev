@@ -1,7 +1,7 @@
 import { localProjects } from '$lib/WorkData.js';
 
 export async function load() {
-    let getProjectsLocally = true;
+    let getProjectsLocally = false;
 
     // WIP: hit rate limit for github api, so will use local data until I implement a better solution
     if(getProjectsLocally){
@@ -19,7 +19,7 @@ export async function load() {
 
         const projects = data
             .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-            .slice(0, 5);
+            .slice(0, 6);
 
         return { projects };
     } catch (error) {
