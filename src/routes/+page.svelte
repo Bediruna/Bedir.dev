@@ -21,7 +21,7 @@
 
     <div>
         <p>
-            {summary}
+            {@html summary}
         </p>
     </div>
 
