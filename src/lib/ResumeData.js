@@ -1,4 +1,4 @@
-export const summary = "Software Engineer with more than 8 years of experience. Skilled in developing technical solutions and automations to real world business problems.Consistently focused on <strong>optimizing performance</strong>, ensuring <strong>code quality</strong>, and building <strong>intuitive user interfaces</strong>.";
+export const summary = "Software Engineer with more than 8 years of experience. Skilled in developing technical solutions and automations to real world business problems. Consistently focused on <strong>optimizing performance</strong>, ensuring <strong>code quality</strong>, and building <strong>intuitive user interfaces</strong>.";
 
 export const skills = [
     {
