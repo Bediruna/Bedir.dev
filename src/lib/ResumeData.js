@@ -32,7 +32,7 @@ export const jobs = [
     },
     {
         title: "Senior Software Engineer (Contract)",
-        company: "Beacon Hill - Orlando, FL",
+        company: "SP+ (SP Plus) - Orlando, FL",
         period: "Jun 2024 – Oct 2024",
         tasks: [
             "Architected and implemented AWS-hosted solutions utilizing .NET 8 and Lambda functions, streamlining customer enrollment processes through seamless cloud integration.",
