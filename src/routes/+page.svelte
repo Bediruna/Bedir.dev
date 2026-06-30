@@ -16,7 +16,7 @@
         title="Download Resume PDF"
         download="Bedir Aygun Resume.pdf"><DownloadIcon height="1" /></a
     >
-    <h1>BEDIR AYGUN</h1>
+    <h1>BEDIR YUSUF AYGUN</h1>
     <h2>Software Engineer</h2>
 
     <div>

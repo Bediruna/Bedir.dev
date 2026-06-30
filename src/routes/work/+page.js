@@ -9,7 +9,7 @@ export async function load() {
     }
 
     try {
-        const res = await fetch('https://api.github.com/users/bediruna/repos');
+        const res = await fetch('https://api.github.com/users/BedrYusf/repos');
 
         if (!res.ok) {
             throw new Error(`GitHub API error: ${res.status} ${res.statusText}`);

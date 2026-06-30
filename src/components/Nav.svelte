@@ -51,7 +51,7 @@
             <li class="nav-item">
                 <a
                     class="nav-link"
-                    href="https://github.com/bediruna"
+                    href="https://github.com/BedrYusf"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub profile"

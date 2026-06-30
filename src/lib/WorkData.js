@@ -2,7 +2,7 @@ export const localProjects = [
     {
         "id": 812790752,
         "name": "Bedir.dev",
-        "html_url": "https://github.com/Bediruna/Bedir.dev",
+        "html_url": "https://github.com/BedrYusf/Bedir.dev",
         "description": "SvelteKit based website for bedir.dev",
         "created_at": "2024-06-09T22:07:05Z",
         "updated_at": "2025-05-01T13:26:11Z",
@@ -13,7 +13,7 @@ export const localProjects = [
     {
         "id": 745810350,
         "name": "BetterFitNotes",
-        "html_url": "https://github.com/Bediruna/BetterFitNotes",
+        "html_url": "https://github.com/BedrYusf/BetterFitNotes",
         "description": ".NET MAUI Blazor based fitness logging app.",
         "created_at": "2024-01-20T07:54:54Z",
         "updated_at": "2025-04-17T17:08:57Z",
@@ -24,7 +24,7 @@ export const localProjects = [
     {
         "id": 856561265,
         "name": "BetterLoveLanguage.com",
-        "html_url": "https://github.com/Bediruna/BetterLoveLanguage.com",
+        "html_url": "https://github.com/BedrYusf/BetterLoveLanguage.com",
         "description": "SvelteKit based love language quiz.",
         "created_at": "2024-09-12T19:35:44Z",
         "updated_at": "2025-04-29T20:41:40Z",
@@ -35,7 +35,7 @@ export const localProjects = [
     {
         "id": 962035233,
         "name": "BetterMealTracker",
-        "html_url": "https://github.com/Bediruna/BetterMealTracker",
+        "html_url": "https://github.com/BedrYusf/BetterMealTracker",
         "description": "Simple meal tracker app that's meant to give users a minimal and smooth experience for logging meals. Built with Blazor MAUI.",
         "created_at": "2025-04-07T14:48:45Z",
         "updated_at": "2025-04-24T01:08:53Z",
@@ -46,7 +46,7 @@ export const localProjects = [
     {
         "id": 242823280,
         "name": "DaliciAdam",
-        "html_url": "https://github.com/Bediruna/DaliciAdam",
+        "html_url": "https://github.com/BedrYusf/DaliciAdam",
         "description": "C# Console Based Game inspired by Oregon Trail In Turkish",
         "created_at": "2020-02-24T19:25:39Z",
         "updated_at": "2025-04-29T20:41:13Z",
@@ -57,7 +57,7 @@ export const localProjects = [
     {
         "id": 951326601,
         "name": "MathNinjaGodot",
-        "html_url": "https://github.com/Bediruna/MathNinjaGodot",
+        "html_url": "https://github.com/BedrYusf/MathNinjaGodot",
         "description": "Math game built with Godot.",
         "created_at": "2025-03-19T14:02:44Z",
         "updated_at": "2025-04-06T03:37:52Z",
