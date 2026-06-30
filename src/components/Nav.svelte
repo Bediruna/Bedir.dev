@@ -63,12 +63,14 @@
                 <button
                     id="theme-toggle-btn"
                     on:click={toggleTheme}
-                    aria-label="Toggle theme"
+                    aria-label={theme === "light"
+                        ? "Switch to dark mode"
+                        : "Switch to light mode"}
                 >
                     {#if theme === "light"}
-                        <SunIcon />
-                    {:else}
                         <MoonIcon />
+                    {:else}
+                        <SunIcon />
                     {/if}
                 </button>
             </li>

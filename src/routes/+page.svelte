@@ -9,7 +9,7 @@
     } from "$lib/ResumeData.js";
 </script>
 
-<div class="container">
+<div class="container pb-5">
     <a
         class="text-decoration-none float-end"
         href="/Bedir Aygun Resume.pdf"

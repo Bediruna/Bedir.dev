@@ -1,4 +1,16 @@
-export const summary = "Software Engineer with more than 8 years of experience. Skilled in developing technical solutions and automations to real world business problems. Consistently focused on <strong>optimizing performance</strong>, ensuring <strong>code quality</strong>, and delivering <strong>exceptional user experiences</strong>.";
+const CAREER_START_YEAR = 2017;
+const CAREER_START_MONTH = 5; // May — first role (Junior Software Developer)
+
+function getYearsOfExperience() {
+    const now = new Date();
+    let years = now.getFullYear() - CAREER_START_YEAR;
+    if (now.getMonth() + 1 < CAREER_START_MONTH) {
+        years -= 1;
+    }
+    return years;
+}
+
+export const summary = `Software Engineer with more than ${getYearsOfExperience()} years of experience. Skilled in developing technical solutions and automations to real world business problems. Consistently focused on <strong>optimizing performance</strong>, ensuring <strong>code quality</strong>, and delivering <strong>exceptional user experiences</strong>.`;
 
 export const skills = [
     {
