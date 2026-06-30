@@ -33,13 +33,13 @@ export const skills = [
 
 export const jobs = [
     {
-        title: "Freelance Developer",
-        company: "Technology Presence - Remote",
-        period: "Oct 2024 – Present",
+        title: "Software Engineer",
+        company: "Dent Wizard International",
+        period: "Sep 2025 – Present",
         tasks: [
-            "Designed and built high performance and light-weight web sites that increased customer acquisition. Utilized Google Analytics to demonstrate substantial traffic growth, increasing visits by thousands.",
-            "Advised and implemented software solutions to drive client success and achieve business goals.",
-            "Identified and resolved critical technical failure points within business operations, resulting in cost savings of thousands of dollars for clients.",
+            "Engineered and scaled serverless microservices by developing .NET Lambda functions integrated with Amazon API Gateway, optimizing backend performance and ensuring high availability for core API endpoints.",
+            "Architected and maintained full-stack features for a SvelteKit web application, streamlining the user experience and improving front-end responsiveness through efficient state management and modern web standards.",
+            "Automated cloud infrastructure lifecycle using Infrastructure as Code (IaC) to provision and manage AWS resources, including ECS container orchestration, reducing manual configuration and ensuring environment consistency across the deployment pipeline.",
         ],
     },
     {
