@@ -75,6 +75,19 @@
 </nav>
 
 <style>
+    /*
+      Bootstrap's navbar-nav is flex-direction: column below the expand
+      breakpoint, which stacked the button + icons vertically on mobile and
+      pushed the hero content far down the page. Keep it a single horizontal
+      row on every screen size.
+    */
+    .navbar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
     .nav-link {
         font-size: 1.3rem;
         color: var(--text-color) !important;
