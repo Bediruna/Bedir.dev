@@ -1,5 +1,5 @@
 const CAREER_START_YEAR = 2017;
-const CAREER_START_MONTH = 5; // May — first role (Junior Software Developer)
+const CAREER_START_MONTH = 5; // May: first role (Junior Software Developer)
 
 function getYearsOfExperience() {
     const now = new Date();

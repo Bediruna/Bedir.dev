@@ -4,15 +4,12 @@
     import GitHubIcon from "./icons/GitHubIcon.svelte";
     import SunIcon from "./icons/SunIcon.svelte";
     import MoonIcon from "./icons/MoonIcon.svelte";
+    import { calUrl } from "$lib/ContactData.js";
 
     let theme;
 
     onMount(() => {
-        const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-        ).matches;
-        theme = savedTheme || (prefersDark ? "dark" : "light");
+        theme = localStorage.getItem("theme") || "light";
         document.documentElement.setAttribute("data-bs-theme", theme);
     });
 
@@ -25,18 +22,17 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <!-- Left nav items -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3 align-items-center">
             <li class="nav-item">
-                <a class="nav-link" href="/">BEDIR</a>
+                <a
+                    class="btn-book-nav"
+                    href={calUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Book a call
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/work">WORK</a>
-            </li>
-        </ul>
-
-        <!-- Right nav items -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
             <li class="nav-item">
                 <a
                     class="nav-link"
@@ -97,5 +93,22 @@
         padding: 0;
         color: var(--icon-color);
         vertical-align: middle;
+    }
+
+    .btn-book-nav {
+        display: inline-block;
+        padding: 0.35rem 0.85rem;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--background-color);
+        background-color: var(--text-color);
+        border: 2px solid var(--text-color);
+        white-space: nowrap;
+    }
+
+    .btn-book-nav:hover {
+        opacity: 0.85;
+        color: var(--background-color);
     }
 </style>
