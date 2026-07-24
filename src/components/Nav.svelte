@@ -110,14 +110,16 @@
 
     .btn-book-nav {
         display: inline-block;
-        padding: 0.35rem 0.85rem;
-        font-size: 1rem;
+        padding: 0.4rem 0.95rem;
+        font-size: 0.95rem;
         font-weight: 600;
         text-decoration: none;
         color: var(--background-color);
         background-color: var(--text-color);
-        border: 2px solid var(--text-color);
+        border: 1px solid var(--text-color);
+        border-radius: 0.55rem;
         white-space: nowrap;
+        transition: opacity 0.15s ease;
     }
 
     .btn-book-nav:hover {
