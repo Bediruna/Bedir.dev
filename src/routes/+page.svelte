@@ -1,14 +1,33 @@
 <script>
+    import { onMount } from "svelte";
     import { email, phone, calUrl } from "$lib/ContactData.js";
 
     const telHref = phone ? `tel:+1${phone.replace(/\D/g, "")}` : "";
+
+    let demoVideo;
+
+    onMount(() => {
+        // Svelte's hydration can drop the muted flag, which makes the
+        // browser block autoplay; re-assert it and start playback manually.
+        if (demoVideo) {
+            demoVideo.muted = true;
+            demoVideo.play().catch(() => {});
+        }
+    });
 </script>
 
 <div class="page">
     <section class="hero">
         <img
-            class="avatar"
-            src="/BedirAygun.jpg"
+            class="avatar avatar-light"
+            src="/avatar-light.jpg"
+            alt="Bedir Aygun"
+            width="112"
+            height="112"
+        />
+        <img
+            class="avatar avatar-dark"
+            src="/avatar-dark.jpg"
             alt="Bedir Aygun"
             width="112"
             height="112"
@@ -147,6 +166,47 @@
     </section>
 
     <section class="section">
+        <p class="kicker">Featured project</p>
+        <a
+            class="project-card"
+            href="https://territoryscan.com"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <div class="project-media">
+                <video bind:this={demoVideo} autoplay muted loop playsinline>
+                    <track kind="captions" />
+                    <source src="/demo.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="project-body">
+                <h3>TerritoryScan</h3>
+                <p>
+                    Lead generation and tech sourcing for HVAC companies, built
+                    on public permit and license records.
+                </p>
+                <span class="project-link">
+                    territoryscan.com
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </span>
+            </div>
+        </a>
+    </section>
+
+    <section class="section">
         <p class="kicker">About</p>
         <p class="about-text">
             I've spent <strong>10 years</strong> as a software engineer. I built
@@ -260,6 +320,18 @@
             width: 6rem;
             height: 6rem;
         }
+    }
+
+    .avatar-dark {
+        display: none;
+    }
+
+    :global([data-bs-theme="dark"]) .avatar-light {
+        display: none;
+    }
+
+    :global([data-bs-theme="dark"]) .avatar-dark {
+        display: block;
     }
 
     .status {
@@ -495,6 +567,92 @@
         line-height: 1.65;
         color: var(--muted-color);
         margin-bottom: 0;
+    }
+
+    /* ---------- Featured project ---------- */
+
+    .project-card {
+        display: grid;
+        grid-template-columns: 1.25fr 1fr;
+        align-items: center;
+        overflow: hidden;
+        text-decoration: none;
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 1rem;
+        background-color: var(--surface-color);
+        transition:
+            transform 0.18s ease,
+            border-color 0.18s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-color);
+        color: var(--text-color);
+    }
+
+    .project-card:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+
+    .project-media {
+        align-self: center;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .project-media video {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .project-body {
+        padding: 1.75rem;
+    }
+
+    .project-body h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.6rem;
+    }
+
+    .project-body p {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        color: var(--muted-color);
+        margin-bottom: 1.1rem;
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--accent-color);
+    }
+
+    .project-link svg {
+        transition: transform 0.15s ease;
+    }
+
+    .project-card:hover .project-link svg {
+        transform: translateX(3px);
+    }
+
+    @media (max-width: 767px) {
+        .project-card {
+            grid-template-columns: 1fr;
+        }
+
+        .project-media {
+            align-self: start;
+            border-right: none;
+            border-bottom: 1px solid var(--border-color);
+        }
     }
 
     /* ---------- About ---------- */
