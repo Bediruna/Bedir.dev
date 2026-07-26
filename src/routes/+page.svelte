@@ -1,20 +1,55 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount, tick } from "svelte";
     import { email, phone, calUrl } from "$lib/ContactData.js";
 
     const telHref = phone ? `tel:+1${phone.replace(/\D/g, "")}` : "";
 
     let demoVideo;
+    let computerUseVideo;
+    let modalVideo;
+    let videoModalOpen = false;
+
+    async function openVideoModal() {
+        videoModalOpen = true;
+        document.body.style.overflow = "hidden";
+        await tick();
+        if (modalVideo) {
+            modalVideo.currentTime = 0;
+            modalVideo.play().catch(() => {});
+        }
+    }
+
+    function closeVideoModal() {
+        videoModalOpen = false;
+        document.body.style.overflow = "";
+        if (modalVideo) {
+            modalVideo.pause();
+        }
+    }
+
+    function handleWindowKeydown(event) {
+        if (event.key === "Escape" && videoModalOpen) {
+            closeVideoModal();
+        }
+    }
 
     onMount(() => {
         // Svelte's hydration can drop the muted flag, which makes the
         // browser block autoplay; re-assert it and start playback manually.
-        if (demoVideo) {
-            demoVideo.muted = true;
-            demoVideo.play().catch(() => {});
+        for (const video of [demoVideo, computerUseVideo]) {
+            if (video) {
+                video.muted = true;
+                video.play().catch(() => {});
+            }
         }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
     });
 </script>
+
+<svelte:window onkeydown={handleWindowKeydown} />
 
 <div class="page">
     <section class="hero">
@@ -166,30 +201,121 @@
     </section>
 
     <section class="section">
-        <p class="kicker">Featured project</p>
-        <a
-            class="project-card"
-            href="https://territoryscan.com"
-            target="_blank"
-            rel="noopener noreferrer"
+        <p class="kicker">Featured projects</p>
+        <div class="project-list">
+            <button
+                type="button"
+                class="project-card project-card-button"
+                onclick={openVideoModal}
+            >
+                <div class="project-media">
+                    <video
+                        bind:this={computerUseVideo}
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                    >
+                        <track kind="captions" />
+                        <source
+                            src="/computerUseDemo.mp4"
+                            type="video/mp4"
+                        />
+                    </video>
+                </div>
+                <div class="project-body">
+                    <h3>Cruise Control</h3>
+                    <p>
+                        An AI agent that controls the computer to automate
+                        tasks: clicking, typing, and navigating apps the way a
+                        person would.
+                    </p>
+                    <span class="project-link">
+                        Watch demo
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                    </span>
+                </div>
+            </button>
+
+            <a
+                class="project-card"
+                href="https://territoryscan.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <div class="project-media">
+                    <video bind:this={demoVideo} autoplay muted loop playsinline>
+                        <track kind="captions" />
+                        <source src="/demo.mp4" type="video/mp4" />
+                    </video>
+                </div>
+                <div class="project-body">
+                    <h3>TerritoryScan</h3>
+                    <p>
+                        Lead generation and tech sourcing for HVAC companies,
+                        built on public permit and license records.
+                    </p>
+                    <span class="project-link">
+                        territoryscan.com
+                        <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                        >
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    {#if videoModalOpen}
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+        <div
+            class="video-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Cruise Control demo"
+            tabindex="-1"
+            onclick={closeVideoModal}
+            onkeydown={(e) => {
+                if (e.key === "Enter" || e.key === " ") closeVideoModal();
+            }}
         >
-            <div class="project-media">
-                <video bind:this={demoVideo} autoplay muted loop playsinline>
-                    <track kind="captions" />
-                    <source src="/demo.mp4" type="video/mp4" />
-                </video>
-            </div>
-            <div class="project-body">
-                <h3>TerritoryScan</h3>
-                <p>
-                    Lead generation and tech sourcing for HVAC companies, built
-                    on public permit and license records.
-                </p>
-                <span class="project-link">
-                    territoryscan.com
+            <div
+                class="video-modal-dialog"
+                role="presentation"
+                onclick={(e) => e.stopPropagation()}
+            >
+                <button
+                    type="button"
+                    class="video-modal-close"
+                    aria-label="Close video"
+                    onclick={closeVideoModal}
+                >
                     <svg
-                        width="16"
-                        height="16"
+                        width="20"
+                        height="20"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -198,13 +324,22 @@
                         stroke-linejoin="round"
                         aria-hidden="true"
                     >
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
                     </svg>
-                </span>
+                </button>
+                <video
+                    bind:this={modalVideo}
+                    controls
+                    autoplay
+                    playsinline
+                >
+                    <track kind="captions" />
+                    <source src="/computerUseDemo.mp4" type="video/mp4" />
+                </video>
             </div>
-        </a>
-    </section>
+        </div>
+    {/if}
 
     <section class="section">
         <p class="kicker">About</p>
@@ -571,6 +706,12 @@
 
     /* ---------- Featured project ---------- */
 
+    .project-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
     .project-card {
         display: grid;
         grid-template-columns: 1.25fr 1fr;
@@ -584,6 +725,14 @@
         transition:
             transform 0.18s ease,
             border-color 0.18s ease;
+    }
+
+    .project-card-button {
+        width: 100%;
+        padding: 0;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
     }
 
     .project-card:hover {
@@ -653,6 +802,65 @@
             border-right: none;
             border-bottom: 1px solid var(--border-color);
         }
+    }
+
+    /* ---------- Video modal ---------- */
+
+    .video-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.25rem;
+        background-color: rgba(0, 0, 0, 0.72);
+        backdrop-filter: blur(4px);
+    }
+
+    .video-modal-dialog {
+        position: relative;
+        width: min(100%, 56rem);
+        border-radius: 1rem;
+        overflow: hidden;
+        background-color: #000;
+        box-shadow: 0 24px 64px -16px rgba(0, 0, 0, 0.55);
+    }
+
+    .video-modal-dialog video {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(80vh, 40rem);
+        background-color: #000;
+    }
+
+    .video-modal-close {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        border: none;
+        border-radius: 999px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.55);
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+    }
+
+    .video-modal-close:hover {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    .video-modal-close:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
     }
 
     /* ---------- About ---------- */
